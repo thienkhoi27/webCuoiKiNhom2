@@ -48,7 +48,7 @@ Dự án được xây dựng dựa trên mô hình **MVC** vững chắc và c�
 ### 🖥️ Bảng điều khiển (Dashboard)
 Hiển thị tổng quan tình hình tài chính, biểu đồ thu chi và danh sách giao dịch gần nhất.
 
-![Dashboard Screenshot](.screenshots/ss1.png)
+![Dashboard Screenshot](screenshots/ss1.png)
 *(Hình 1: Giao diện Bảng điều khiển hiển thị thống kê tổng quan)*
 
 ---
