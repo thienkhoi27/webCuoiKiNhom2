@@ -123,7 +123,7 @@ Hiển thị tổng quan tình hình tài chính, biểu đồ thu chi và danh 
 
 | STT | Thành viên | Vai trò | Github |
 | :--: | :--- | :--- | :--- |
-| 1 | **Ngyễn THu Hương** | Team Leader / Backend | [@thuhun166] |
+| 1 | **Ngyễn Thu Hương** | Team Leader / Backend | [@thuhun166] |
 | 2 | **Lê Thiện Khôi** | Frontend / UI-UX | [@thienkhoi27](#) |
 | 3 | **Nguyễn Tuấn Kiệt** | Database / Tester | [@](#) |
 | 4 | **Dương Phú Nhật** | Database / Tester | [@](#) |
