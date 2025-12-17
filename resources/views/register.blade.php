@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
     @vite('resources/css/app.css')
-    <title>Đăng ký</title>
+    <title>Spendly</title>
 </head>
 
 <body class="bg-neutral-50 md:bg-[#EEEEEE] h-screen text-[#222831]">
     <div class="flex justify-center w-full h-full items-center">
         <div class="bg-neutral-50 w-full md:w-1/2 xl:w-1/3 md:rounded-3xl p-8 px-10">
-            <h1 class="text-2xl md:text-3xl font-bold text-center md:text-left">Đăng ký</h1>
+            <h1 class="text-2xl md:text-3xl font-bold text-center md:text-left">Sign Up</h1>
 
             {{-- alert --}}
             @if (session('success'))
@@ -64,7 +64,7 @@
 
                 <a href="/login" class="text-[#222831] text-sm underline">Đã có tài khoản? Đăng nhập</a>
                 
-                <button type="submit" class="mt-6 bg-[#222831] text-white rounded-3xl px-4 py-2 font-semibold w-full text-sm lg:text-base">Đăng ký</button>
+                <button type="submit" class="mt-6 bg-[#222831] text-white rounded-3xl px-4 py-2 font-semibold w-full text-sm lg:text-base">Sign Up</button>
 
             </form>
         </div>

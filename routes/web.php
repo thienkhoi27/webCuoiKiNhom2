@@ -164,7 +164,7 @@ Route::post('/edit-expense/{id}', [editExpenseController::class, 'editExpense'])
 
 Route::get('delete-expense/{id}', function ($id) {
     Transaction::find($id)->delete();
-    return redirect('/')->with('success', 'Chi/Thu đã được xóa!');
+    return redirect('/')->with('success', 'Expense deleted successfully!');
 });
 
 Route::post('/transactions', [addExpenseController::class, 'store'])->name('transactions.store');
@@ -246,5 +246,5 @@ Route::get('/logout', function () {
     session()->forget('username');
     session()->forget('profilePicture');
     session()->flush();
-    return redirect('/login')->with('success', 'Bạn đã đăng xuất!');
+    return redirect('/login')->with('success', 'You have been logged out!');
 });

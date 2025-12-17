@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
     @vite('resources/css/app.css')
-    <title>Phân tích</title>
+    <title>Spendly</title>
 </head>
 
 <body class="h-full overflow-hidden text-[#222831] bg-[#e8a29b]">
