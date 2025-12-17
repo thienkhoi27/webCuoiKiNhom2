@@ -47,28 +47,30 @@
                         {{-- card --}}
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
                             <x-cards.expense-card
-                                class="p-6 bg-gradient-to-br from-amber-400 to-amber-500 shadow-lg shadow-black/10"
+                                class="p-6 bg-gradient-to-br from-amber-400 to-amber-500"
                                 h1Class="text-2xl lg:text-3xl"
-                                spanClass="text-sm lg:text-base opacity-90"
-                                spanText="Bạn đã chi"
-                                date="Tháng này"
+                                spanClass="text-sm lg:text-base"
+                                title="Bạn đã chi"
+                                subtitle="Tháng này"
                                 :total="$spentThisMonth"
+                                date="{{ date('M Y') }}"
                             />
 
                             <x-cards.expense-card
-                                class="p-6 bg-gradient-to-br from-orange-400 to-orange-500 shadow-lg shadow-black/10"
+                                class="p-6 bg-gradient-to-br from-orange-400 to-orange-500"
                                 h1Class="text-2xl lg:text-3xl"
-                                spanClass="text-sm lg:text-base opacity-90"
-                                spanText="Bạn đã thu"
-                                date="Tháng này"
+                                spanClass="text-sm lg:text-base"
+                                title="Bạn đã thu"
+                                subtitle="Tháng này"
                                 :total="$incomeThisMonth"
+                                date="{{ date('M Y') }}"
                             />
                         </div>
 
 
                         
                         {{-- transactions --}}
-                        <h2 class="mt-4 px-6 text-lg font-bold">Chi phí gần nhất</h2>
+                        <h2 class="mt-4 px-6 text-lg font-bold">Thu/Chi gần nhất</h2>
                         <div class="mt-4 flex flex-col gap-4 px-6 pb-6 overflow-y-auto">
                             @if (count($transactions) == 0)
                                 <span class="mt-10 text-md font-semibold text-center text-gray-500">No transactions yet</span>

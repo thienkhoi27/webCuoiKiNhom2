@@ -15,12 +15,14 @@ class expenseCard extends Component
         public string $componentWidth = '',
         public string $h1Class = '',
         public string $spanClass = '',
-        public string $spanText = 'This month',
+        public string $title = 'Bạn đã chi',
+        public string $subtitle = 'Tháng này',
         public string $date = '',
         public int $total = 0,
     ) {
-        //
+        
     }
+
 
     /**
      * Get the view / contents that represent the component.

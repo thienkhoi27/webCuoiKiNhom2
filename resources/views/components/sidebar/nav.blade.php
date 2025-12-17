@@ -31,7 +31,7 @@
                     <li class="mb-4">
                         <a href="/add-expense" class="flex items-center gap-4 rounded-lg p-4 w-full text-[#222831] {{ request()->is('add-expense') ? 'bg-neutral-50' : 'transition hover:text-[#EEEEEE] hover:bg-[#222831]' }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="size-6"><path fill="currentColor" d="M11 17h2v-4h4v-2h-4V7h-2v4H7v2h4zm-6 4q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21z"/></svg>
-                            <span class="font-bold hidden md:group-hover:block">Thêm chi/thu</span>
+                            <span class="font-bold hidden md:group-hover:block">Thêm thu/chi</span>
                         </a>
                     </li>
                     
