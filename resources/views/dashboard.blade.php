@@ -130,7 +130,19 @@
 
                                             <div class="flex-1">
                                                 <div class="font-bold">{{ $c->name }}</div>
-                                                <div class="text-xs font-semibold opacity-90">{{ $c->status }}</div>
+                                                @php
+                                                    $statusClass = match($c->status) {
+                                                        'An toàn' => 'text-emerald-200',
+                                                        'Cảnh báo' => 'text-amber-200',
+                                                        'Vượt hạn mức' => 'text-rose-200',
+                                                        default => 'text-white/80',
+                                                    };
+                                                @endphp
+
+<div class="text-xs font-semibold {{ $statusClass }}">
+    {{ $c->status }}
+</div>
+
                                             </div>
                                         </div>
 
