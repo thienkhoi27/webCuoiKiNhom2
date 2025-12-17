@@ -153,37 +153,14 @@
                         </div>
 
                         {{-- charts --}}
-                        <div class="p-6 h-2/3 flex flex-col border-solid border-2 border-[#EEEEEE] rounded-2xl overflow-hidden">
-<<<<<<< HEAD
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-lg">Biểu đồ Thu/Chi</span>
-                                {{-- nếu cần chỗ cho legend/filter sau này --}}
-                            </div>
-
-                            <div class="mt-4 flex-1 overflow-hidden">
-                                @if (count($transactions) == 0)
-                                    <span class="mt-10 text-md font-semibold text-center text-gray-500 w-full block">No transactions yet</span>
-                                @else
-                                    <div id="chartContainer" class="w-full h-full"></div>
-                                @endif
-                            </div>
+                        <div class="p-6 h-2/3 flex items-center gap-6 border-solid border-2 border-[#EEEEEE] rounded-2xl overflow-hidden">
+                            {{-- charts --}}
+                            @if (count($transactions) == 0)
+                                <span class="mt-10 text-md font-semibold text-center text-gray-500 w-full">No transactions yet</span>
+                            @else
+                                <div id="chartContainer" class="w-full h-[250px] md:h-full"></div>
+                            @endif
                         </div>
-
-=======
-    <div class="flex items-center justify-between">
-        <span class="font-bold text-lg">Biểu đồ thu/chi</span>
-        {{-- nếu cần chỗ cho legend/filter sau này --}}
-    </div>
-
-    <div class="mt-4 flex-1 overflow-hidden">
-        @if (count($transactions) == 0)
-            <span class="mt-10 text-md font-semibold text-center text-gray-500 w-full block">No transactions yet</span>
-        @else
-            <div id="chartContainer" class="w-full h-full"></div>
-        @endif
-    </div>
-</div>
->>>>>>> 3a235cdf05f97dd9090886e9cad1c5158aaafa91
                     </div>
                 </div>
             </div>
