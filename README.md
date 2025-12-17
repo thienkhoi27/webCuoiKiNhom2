@@ -1,13 +1,14 @@
 <div align="center">
 
-  <img src="https://cdn-icons-png.flaticon.com/512/2344/2344132.png" alt="Logo" width="100" height="100">
+  <img src="https://cdn-icons-png.flaticon.com/512/2953/2953363.png" alt="Spendly Logo" width="120" height="120">
 
-  # 💰 Hệ Thống Quản Lý Chi Tiêu Cá Nhân
-  
-  **Giải pháp tài chính thông minh - Đơn giản hóa việc quản lý ngân sách của bạn**
+  # 💸 Spendly - Quản Lý Tài Chính Cá Nhân
 
-  [![Laravel](https://img.shields.io/badge/Laravel-9.x-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
-  [![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?style=for-the-badge&logo=php)](https://www.php.net)
+  **Giải pháp quản lý thu chi trực quan, thông minh và hiệu quả.**
+
+  [![Laravel](https://img.shields.io/badge/Laravel-11.x-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
+  [![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php)](https://www.php.net)
+  [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com)
   [![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql)](https://www.mysql.com)
   [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
 
@@ -17,124 +18,200 @@
 
 ## 📖 Giới thiệu
 
-Ứng dụng web giúp người dùng quản lý tài chính cá nhân một cách hiệu quả và trực quan. Hệ thống không chỉ là nơi ghi chép, mà còn là trợ lý phân tích tài chính giúp bạn đưa ra quyết định chi tiêu thông minh hơn thông qua các biểu đồ và tính năng tự động hóa.
+**Spendly** là ứng dụng web giúp người dùng quản lý tài chính cá nhân theo hướng trực quan và dễ dùng. Hệ thống cho phép ghi lại thu/chi hàng ngày, phân loại theo danh mục, theo dõi hạn mức ngân sách, xem biểu đồ thống kê và xuất báo cáo PDF chi tiết.
 
-### ✨ Tính năng nổi bật
-
-| Tính năng | Mô tả |
-| :--- | :--- |
-| 📝 **Ghi chép hàng ngày** | Dễ dàng thêm mới các khoản thu/chi với vài cú click. |
-| 🗂️ **Phân loại thông minh** | Tự động phân loại giao dịch dựa trên từ khóa gợi ý. |
-| 📊 **Thống kê trực quan** | Tích hợp **Chart.js** vẽ biểu đồ xu hướng tài chính theo thời gian thực. |
-| 💸 **Quản lý ngân sách** | Thiết lập giới hạn chi tiêu cho từng danh mục theo tháng. |
-| 🎨 **Giao diện hiện đại** | Thiết kế thân thiện, tương tác mượt mà với Blade & CSS3. |
+### 🌟 Điểm nổi bật
+* **Trực quan:** Biểu đồ CanvasJS hiển thị rõ ràng xu hướng tài chính.
+* **Thông minh:** Cảnh báo hạn mức chi tiêu bằng màu sắc (Xanh/Cam/Đỏ).
+* **Tiện lợi:** Xuất báo cáo PDF nhanh chóng, hỗ trợ tiếng Việt.
 
 ---
 
-## 🛠️ Công nghệ sử dụng
+## 🚀 Public Demo & Tài khoản
 
-Dự án được xây dựng dựa trên mô hình **MVC** vững chắc và các công nghệ hiện đại:
+Bạn có thể trải nghiệm ngay sản phẩm tại địa chỉ:
+> 🌐 **Live URL:** [ltwebnhom2.gt.tc](http://ltwebnhom2.gt.tc)
 
-* **Backend:** [Laravel 9.0](https://laravel.com/), [PHP 8.2](https://php.net/)
-* **Database:** [MySQL](https://www.mysql.com/) (Eloquent ORM)
-* **Frontend:** [Blade Template](https://laravel.com/docs/blade), HTML5, CSS3, JavaScript
-* **Visualization:** [Chart.js](https://www.chartjs.org/)
-* **Server:** Apache/Nginx
+### 🔐 Tài khoản Demo (Admin)
+Dữ liệu đã được nạp sẵn (Seed) đầy đủ danh mục, hạn mức và lịch sử giao dịch.
+
+| Vai trò | Email | Mật khẩu |
+| :--- | :--- | :--- |
+| **Quản trị viên** | `admin@example.com` | `passwords` |
 
 ---
 
 ## 📸 Ảnh màn hình (Screenshots)
 
 ### 🖥️ Bảng điều khiển (Dashboard)
-Hiển thị tổng quan tình hình tài chính, biểu đồ thu chi và danh sách giao dịch gần nhất.
-
-![Dashboard Screenshot](screenshots/ss1.png)
-*(Hình 1: Giao diện Bảng điều khiển hiển thị thống kê tổng quan)*
+<div align="center">
+  <img src="./screenshots/dashboard.png" alt="Giao diện Dashboard" width="100%">
+  <br>
+  <em>Giao diện tổng quan với biểu đồ và danh sách giao dịch gần nhất</em>
+</div>
 
 ---
 
-## 🚀 Hướng dẫn cài đặt
+## ✨ Tính năng chính
 
-Để chạy ứng dụng trên máy cá nhân (Localhost), vui lòng thực hiện theo các bước sau:
+### ✅ 1. Dashboard (Bảng điều khiển)
+* **Thẻ tổng quan:** Hiển thị tổng số tiền **Đã thu** và **Đã chi** trong tháng hiện tại.
+* **Danh sách giao dịch:** Hiển thị các khoản thu/chi mới nhất (sắp xếp theo thời gian).
+* **Trạng thái ngân sách:** Danh sách chi phí theo danh mục kèm icon và thanh trạng thái màu sắc.
+* **Biểu đồ:** Tích hợp **CanvasJS** vẽ biểu đồ Thu/Chi theo thời gian thực.
 
-### Yêu cầu hệ thống
-* PHP >= 8.0
+### ✅ 2. Quản lý Giao dịch (Thu/Chi)
+* Thêm mới giao dịch Thu hoặc Chi dễ dàng.
+* Gắn giao dịch với danh mục cụ thể (kèm icon minh họa).
+* **Giao diện trực quan:**
+    * 🟢 **Thu:** Nền xanh, số tiền màu xanh.
+    * 🟠 **Chi:** Nền cam, số tiền màu cam-đỏ.
+    * 💰 **Định dạng tiền:** Tự động format `1.234.567 ₫`.
+
+### ✅ 3. Danh mục & Hạn mức
+Hệ thống hỗ trợ tạo các danh mục (Ăn uống, Di chuyển, Mua sắm...) với cơ chế cảnh báo thông minh:
+* 🟢 **An toàn:** Chi tiêu dưới hạn mức.
+* 🟠 **Cảnh báo:** Sắp chạm ngưỡng hạn mức.
+* 🔴 **Vượt hạn mức:** Chi tiêu vượt quá ngân sách đề ra.
+
+### ✅ 4. Phân tích (Analytics)
+* Xem toàn bộ lịch sử giao dịch.
+* **Tìm kiếm:** Lọc giao dịch theo từ khóa (`?search=...`).
+* **UX tối ưu:** Cuộn nội bộ trong vùng danh sách, không làm cuộn cả trang web.
+
+### ✅ 5. Báo cáo PDF
+* Xuất báo cáo Thu/Chi theo khoảng thời gian tùy chọn.
+* Tổng hợp số liệu: Tổng thu, Tổng chi, Chênh lệch.
+* **Hỗ trợ Font tiếng Việt:** Hiển thị đúng chuẩn font NotoSans/DejaVu Sans.
+
+---
+
+## 🛠️ Công nghệ sử dụng
+
+| Lĩnh vực | Công nghệ / Thư viện |
+| :--- | :--- |
+| **Backend** | Laravel 11.x (MVC, Eloquent ORM) |
+| **Frontend** | Blade Template, TailwindCSS, JavaScript (Vite build) |
+| **Database** | MySQL |
+| **Charts** | CanvasJS |
+| **PDF Export** | barryvdh/laravel-dompdf |
+
+---
+
+## ⚙️ Cài đặt Local (Máy cá nhân)
+
+### 1. Yêu cầu hệ thống
+* PHP >= 8.2
 * Composer
+* Node.js + npm
 * MySQL
 
-### Các bước thực hiện
+### 2. Các bước cài đặt
 
-1.  **Clone source code**
-    ```bash
-    git clone [https://github.com/username/HeThongQuanLyChiTieu.git](https://github.com/username/HeThongQuanLyChiTieu.git)
-    cd HeThongQuanLyChiTieu
-    ```
+**Bước 1: Clone source code**
+```bash
+git clone <URL-repo-cua-ban>
+cd webCuoiKiNhom2
+```
 
-2.  **Cài đặt dependencies**
-    ```bash
-    composer install
-    ```
+**Bước 2: Cài đặt thư viện**
+```bash
+# Cài đặt PHP dependencies
+composer install
 
-3.  **Cấu hình môi trường (.env)**
-    ```bash
-    cp .env.example .env
-    ```
-    *Mở file `.env` và chỉnh sửa thông tin kết nối Database:*
-    ```env
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=personal_expense_db
-    DB_USERNAME=root
-    DB_PASSWORD=
-    ```
+# Cài đặt JS dependencies
+npm install
+```
 
-4.  **Tạo Application Key**
-    ```bash
-    php artisan key:generate
-    ```
+**Bước 3: Cấu hình môi trường (.env)**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+*Mở file `.env` và cấu hình thông số database:*
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=spendly
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-5.  **Khởi tạo Database & Seed dữ liệu**
-    *Đảm bảo bạn đã tạo database `personal_expense_db` trong MySQL trước.*
-    ```bash
-    php artisan migrate
-    php artisan db:seed
-    ```
+**Bước 4: Khởi tạo Database & Seed dữ liệu**
+*Lệnh này sẽ tạo bảng và nạp dữ liệu mẫu (Admin, Category, Transaction...)*
+```bash
+php artisan migrate --fresh
+php artisan db:seed --class=DemoSpendlySeeder
+```
 
-6.  **Khởi chạy ứng dụng**
-    ```bash
-    php artisan serve
-    ```
+**Bước 5: Build Assets & Chạy Server**
+```bash
+# Build giao diện TailwindCSS
+npm run build
 
-🎉 Truy cập địa chỉ: `http://localhost:8000`
+# Chạy server Laravel
+php artisan serve
+```
 
----
-
-## 🔐 Tài khoản Demo
-
-Để thuận tiện cho việc trải nghiệm (Review), hệ thống có sẵn tài khoản Admin:
-
-> **Email:** `admin@example.com`  
-> **Password:** `password`
+🎉 Truy cập địa chỉ: `http://127.0.0.1:8000`
 
 ---
 
-## 👥 Đội ngũ phát triển
+## 📂 Quản lý tài nguyên (Icons & Images)
+
+Để hiển thị icon danh mục và avatar admin, vui lòng đảm bảo đã chạy lệnh link storage:
+
+```bash
+php artisan storage:link
+```
+
+**Quy tắc đặt tên file trong `storage/app/public/`:**
+* `category-food.png` (Ăn/Uống)
+* `category-transport.png` (Di chuyển)
+* `category-travel.png` (Du lịch)
+* `category-shopping.png` (Mua sắm)
+* `category-education.png` (Giáo dục)
+* `category-health.png` (Sức khỏe)
+* `category-entertainment.png` (Giải trí)
+* `admin-avatar.png` (Ảnh đại diện Admin)
+
+---
+
+## 📂 Cấu trúc thư mục quan trọng
+
+```text
+app/
+├── Http/Controllers/PDFController.php   # Xử lý xuất báo cáo PDF
+├── Models/Transaction.php               # Model giao dịch
+database/
+└── seeders/DemoSpendlySeeder.php        # Seeder dữ liệu demo
+resources/
+└── views/
+    ├── dashboard.blade.php              # Giao diện Dashboard
+    ├── analytics.blade.php              # Giao diện Phân tích
+    └── pdf/
+        └── document.blade.php           # Template in PDF
+```
+
+---
+
+## 👥 Nhóm phát triển
 
 | STT | Thành viên | Vai trò | Github |
 | :--: | :--- | :--- | :--- |
-| 1 | **Ngyễn Thu Hương** | Team Leader / Backend | [@thuhun166] |
-| 2 | **Lê Thiện Khôi** | Frontend / UI-UX | [@thienkhoi27](#) |
-| 3 | **Nguyễn Tuấn Kiệt** | Database / Tester | [@](#) |
-| 4 | **Dương Phú Nhật** | Database / Tester | [@](#) |
-| 5 | **Hoàng Thị Kiều Diễm** | Database / Tester | [@](#) |
+| 1 | **Nguyễn Thu Hương** | Team Leader / Backend | [@thuhun166](https://github.com/thuhun166) |
+| 2 | **Lê Thiện Khôi** | Frontend / UI-UX | [@thienkhoi27](https://github.com/thienkhoi27) |
+| 3 | **Nguyễn Tuấn Kiệt** | Database / Tester | [@kitcoding17032005](https://github.com/kitcoding17032005) |
+| 4 | **Dương Phú Nhật** | Database / Tester | [@PhuNhat](https://github.com/PhuNhat) |
+| 5 | **Hoàng Thị Kiều Diễm** | Database / Tester | [@KieuDiem279](https://github.com/KieuDiem279) |
 
 ---
 
 ## 📄 License
 
-Dự án này được cấp phép theo giấy phép [MIT](https://opensource.org/licenses/MIT).
+Dự án được phát hành dưới giấy phép [MIT](./LICENSE).
 
 <div align="center">
-  <sub>Được xây dựng với ❤️ bởi Nhóm phát triển.</sub>
+  <sub>Developed with ❤️ by Group 2</sub>
 </div>
