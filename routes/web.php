@@ -13,6 +13,9 @@ use App\Http\Controllers\settingsController;
 use App\Http\Controllers\CategoryController;
 use App\Models\Category;
 use App\Models\CategoryBudget;
+use App\Http\Controllers\AnalysisController;
+
+
 // Categories
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('/categories', [CategoryController::class, 'store']);
@@ -35,10 +38,12 @@ Route::get('/', function () {
 
     $user = session('username');
 
-    // Nên orderBy desc để "gần nhất" đúng nghĩa (tuỳ bạn)
     $transactions = Transaction::where('user', $user)
-        ->orderBy('date', 'desc')
+        ->with('category')
+        ->orderByDesc('date')
+        ->orderByDesc('id')
         ->get();
+
 
     $monthStart = date('Y-m-01');
     $monthEnd   = date('Y-m-t');
@@ -154,6 +159,7 @@ Route::get('expense/{id}', function ($id) {
 });
 
 
+
 Route::post('/edit-expense/{id}', [editExpenseController::class, 'editExpense'])->name('transactions.editExpense');
 
 Route::get('delete-expense/{id}', function ($id) {
@@ -163,13 +169,37 @@ Route::get('delete-expense/{id}', function ($id) {
 
 Route::post('/transactions', [addExpenseController::class, 'store'])->name('transactions.store');
 
-Route::get('/analytics', function () {
+Route::get('/analytics', function (Request $request) {
     if (session('username') == null) return redirect('/login');
 
     $user = session('username');
+    $q = trim((string) $request->query('search', ''));
 
-    $transactions = Transaction::where('user', $user)
-        ->orderBy('date', 'desc')
+    $query = Transaction::where('user', $user)
+        ->with('category');
+
+    if ($q !== '') {
+        $query->where(function ($sub) use ($q) {
+            // tìm theo mô tả
+            $sub->where('expense', 'like', "%{$q}%")
+                // tìm theo type: income/expense
+                ->orWhere('type', 'like', "%{$q}%")
+                // tìm theo tên danh mục
+                ->orWhereHas('category', function ($c) use ($q) {
+                    $c->where('name', 'like', "%{$q}%");
+                });
+
+            // nếu người dùng nhập số tiền
+            $onlyNum = str_replace([',', '.', ' '], '', $q);
+            if (is_numeric($onlyNum)) {
+                $sub->orWhere('total', (int)$onlyNum);
+            }
+        });
+    }
+
+    $transactions = $query
+        ->orderByDesc('date')
+        ->orderByDesc('id')
         ->get();
 
     $categoriesById = Category::where('user', $user)->get()->keyBy('id');
@@ -178,22 +208,27 @@ Route::get('/analytics', function () {
         'page' => 'Phân tích',
         'transactions' => $transactions,
         'categoriesById' => $categoriesById,
+        'search' => $q, // để đổ lại vào ô input
     ]);
-});
+})->name('analytics');
+
 
 Route::get('/pdf', [PDFController::class, 'generatePDF']);
 
 Route::get('/search', [PostController::class, 'search']);
 
+use App\Http\Controllers\ReportController;
+
 Route::get('/reports', function () {
-    $data = ['page' => 'Báo cáo'];
+    if (session('username') == null) return redirect('/login');
 
-    if (session('username') == null) {
-        return redirect('/login');
-    }
+    return view('reports', [
+        'page' => 'Báo cáo',
+    ]);
+})->name('reports');
 
-    return view('reports', $data);
-});
+Route::post('/pdf', [ReportController::class, 'exportPdf'])->name('reports.pdf');
+
 
 Route::get('/settings', function () {
     $data = ['page' => 'Cài đặt'];

@@ -79,7 +79,6 @@
                                 @foreach ($transactions as $transaction)
                                     @php
                                         $isIncome = ($transaction->type ?? 'expense') === 'income';
-                                        // Chi: lấy icon danh mục. Thu: không có danh mục thì để null (sẽ dùng icon fallback)
                                         $iconPath = $isIncome ? null : ($transaction->category->icon_path ?? null);
                                     @endphp
 
@@ -119,7 +118,7 @@
                                 @foreach($categories as $i => $c)
                                     @php $bg = $colorPalette[$i % count($colorPalette)]; @endphp
 
-                                    <div class="min-w-[300px] rounded-2xl p-5 text-white shadow-lg shadow-black/10 {{ $bg }}">
+                                    <div class="shrink-0 w-[240px] rounded-2xl p-5 text-white shadow-lg shadow-black/10 {{ $bg }}">
                                         <div class="flex items-center gap-3">
                                             <div class="w-12 h-12 rounded-2xl bg-white/20 overflow-hidden shrink-0 flex items-center justify-center">
                                                 @if(!empty($c->icon_path))
