@@ -7,11 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    /* use HasFactory; */  // Uncomment this if you need factory support
-    protected $fillable = ['user', 'expense', 'total', 'date'];
-    
-    protected $casts = [
-        'date' => 'date',
-        'total' => 'integer',
-    ];
+    protected $fillable = ['user', 'expense', 'category_id', 'total', 'date'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

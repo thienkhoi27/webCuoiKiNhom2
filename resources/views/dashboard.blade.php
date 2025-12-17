@@ -89,27 +89,56 @@
                         <div class="p-6 {{ count($transactions) == 0 ? 'h-1/3' : 'h-max' }} border-solid border-2 border-[#EEEEEE] rounded-2xl">
                             <span class="font-bold text-lg">Các chi phí của bạn</span>
                             <div class="flex gap-6 mt-4 overflow-x-auto no-scrollbar md:pb-2">
-                                {{-- card --}}
-                                @if (count($transactions) == 0)
-                                    <span class="mt-10 text-md font-semibold text-center text-gray-500 w-full">No transactions yet</span>
-                                @else
-                                    @php
-                                        $date = fn($transaction) => date('M Y', strtotime($transaction['date']));
-                                        $grouped = collect($transactions)->groupBy($date) 
-                                    @endphp
-                                    
-                                    @foreach ($grouped as $month => $transactions)
-                                        <x-cards.expense-card class="w-[200px] lg:w-[250px] p-4 lg:p-6" h1Class="text-xl lg:text-2xl" spanClass="text-xs lg:text-sm" spanText="{{ date('M', strtotime($month)) }}" date="{{ date('Y', strtotime($month)) }}" total="{{ $transactions->sum('total') }}"/>
-                                    
-                                        @php
-                                        $dataPoints[] = [
-                                            "x" => strtotime($month . "-01") * 1000,
-                                            "y" => $transactions->sum('total')
-                                        ];
-                                        @endphp 
-                                    @endforeach
-                                @endif
+                            @if (count($categories) == 0)
+                                <span class="mt-10 text-md font-semibold text-center text-gray-500 w-full">
+                                Chưa có danh mục. Hãy tạo ở mục Danh mục.
+                                </span>
+                            @else
+                                @php
+                                    $colorPalette = [
+                                        'bg-gradient-to-br from-emerald-400 to-emerald-500',
+                                        'bg-gradient-to-br from-sky-400 to-sky-500',
+                                        'bg-gradient-to-br from-violet-400 to-violet-500',
+                                        'bg-gradient-to-br from-amber-400 to-amber-500',
+                                        'bg-gradient-to-br from-rose-400 to-rose-500',
+                                    ];
+                                @endphp
+
+                                @foreach($categories as $i => $c)
+                                    @php $bg = $colorPalette[$i % count($colorPalette)]; @endphp
+
+                                    <div class="min-w-[240px] rounded-2xl p-5 text-white shadow-lg shadow-black/10 {{ $bg }}">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-12 h-12 rounded-2xl bg-white/20 overflow-hidden shrink-0 flex items-center justify-center">
+                                                @if(!empty($c->icon_path))
+                                                    <img src="{{ Storage::url($c->icon_path) }}" alt="{{ $c->name }}" class="w-full h-full object-cover" loading="lazy">
+                                                @else
+                                                    <span class="text-sm font-bold">#</span>
+                                                @endif
+                                            </div>
+
+                                            <div class="flex-1">
+                                                <div class="font-bold">{{ $c->name }}</div>
+                                                <div class="text-xs font-semibold opacity-90">{{ $c->status }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-4 text-sm font-semibold opacity-95">
+                                            Đã chi: {{ number_format($c->spent, 0, ',', '.') }}
+                                            @if($c->budget > 0)
+                                                / {{ number_format($c->budget, 0, ',', '.') }}
+                                            @endif
+                                        </div>
+
+                                        <div class="mt-3 w-full h-2 rounded-full bg-white/30 overflow-hidden">
+                                            <div class="h-full bg-white/90" style="width: {{ $c->percent }}%"></div>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                            @endif
                             </div>
+
                         </div>
 
                         {{-- charts --}}
@@ -155,7 +184,7 @@
                     xValueFormatString: "MMMM",
                     yValueFormatString: "#,###",
                     xValueType: "dateTime",
-                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                    dataPoints: <?php echo json_encode($dataPoints ?? [], JSON_NUMERIC_CHECK); ?>
                 }]
             });
             

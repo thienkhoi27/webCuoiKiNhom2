@@ -18,16 +18,19 @@ class editExpenseController extends Controller
             ->firstOrFail();
 
         $data = $request->validate([
-            'expense' => ['required', 'string', 'max:255'],
-            'total'   => ['required', 'integer', 'min:0'],
-            'date'    => ['required', 'date'],
+            'expense' => ['required','string','max:255'],
+            'total' => ['required','integer','min:0'],
+            'date' => ['required','date'],
+            'category_id' => ['nullable','integer'],
         ]);
 
-        $transaction->update([
+        Transaction::findOrFail($id)->update([
             'expense' => $data['expense'],
+            'category_id' => $data['category_id'] ?? null,
             'total' => (int)$data['total'],
             'date' => $data['date'],
         ]);
+
 
         return redirect('/')->with('success', 'Expense updated successfully!');
     }

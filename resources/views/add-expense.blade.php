@@ -57,6 +57,16 @@
                                 date
                             </x-slot:id>
                         </x-forms.form>
+                        <div>
+                        <label class="text-sm font-semibold block">Danh mục</label>
+                        <select name="category_id"
+                                class="mt-2 p-3 rounded-xl bg-[#EEEEEE] w-full text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-blueSoft/40">
+                            <option value="">-- Chọn danh mục --</option>
+                            @foreach($categories as $c)
+                            <option value="{{ $c->id }}">{{ $c->name }}</option>
+                            @endforeach
+                        </select>
+                        </div>
 
                         <button type="submit" class="mt-6 bg-[#222831] text-white rounded-3xl px-4 py-2 font-semibold">Thêm chi phí</button>
                     </form>

@@ -34,7 +34,18 @@
                             <span class="font-bold hidden md:group-hover:block">Thêm chi phí</span>
                         </a>
                     </li>
-        
+                    
+                    <li class="mb-4">
+                        <a href="/categories"
+                            class="flex items-center gap-4 rounded-lg p-4 w-full text-[#222831] {{ request()->is('categories') ? 'bg-neutral-50' : 'transition hover:text-[#EEEEEE] hover:bg-[#222831]' }}">
+                            <!-- icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="size-6">
+                            <path fill="currentColor" d="M4 6a2 2 0 0 1 2-2h4v4H4zm0 6h6V8H4zm0 8a2 2 0 0 0 2 2h4v-8H4zm10 2h4a2 2 0 0 0 2-2v-4h-6zm6-18a2 2 0 0 0-2-2h-4v8h6z"/>
+                            </svg>
+                            <span class="font-bold hidden md:group-hover:block">Danh mục</span>
+                        </a>
+                    </li>
+
                     {{-- analytics --}}
                     <li class="mb-4">
                         <a href="/analytics" class="flex items-center gap-4 rounded-lg p-4 w-full text-[#222831] {{ request()->is('analytics') ? 'bg-neutral-50' : 'transition hover:text-[#EEEEEE] hover:bg-[#222831]' }}">

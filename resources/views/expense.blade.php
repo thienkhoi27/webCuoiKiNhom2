@@ -72,6 +72,9 @@
                                 {{ $transactions['date'] }}
                             </x-slot:value>
                         </x-forms.form>
+                        <option value="{{ $c->id }}" {{ (int)$transactions['category_id'] === (int)$c->id ? 'selected' : '' }}>
+                        {{ $c->name }}
+                        </option>
 
                         <div class="flex justify-between gap-4 items-center">
                             <a href="/delete-expense/{{ $transactions['id'] }}" class="mt-6 bg-red-600 text-white rounded-3xl px-4 py-2 font-semibold w-full text-center text-sm lg:text-base">Delete</a>
