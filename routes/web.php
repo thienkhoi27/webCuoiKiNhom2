@@ -164,14 +164,21 @@ Route::get('delete-expense/{id}', function ($id) {
 Route::post('/transactions', [addExpenseController::class, 'store'])->name('transactions.store');
 
 Route::get('/analytics', function () {
+    if (session('username') == null) return redirect('/login');
+
     $user = session('username');
-    $data = ['page' => 'Phân tích', 'transactions' => Transaction::where('user', $user)->orderBy('date', 'asc')->get()];
 
-    if (session('username') == null) {
-        return redirect('/login');
-    }
+    $transactions = Transaction::where('user', $user)
+        ->orderBy('date', 'desc')
+        ->get();
 
-    return view('analytics', $data);
+    $categoriesById = Category::where('user', $user)->get()->keyBy('id');
+
+    return view('analytics', [
+        'page' => 'Phân tích',
+        'transactions' => $transactions,
+        'categoriesById' => $categoriesById,
+    ]);
 });
 
 Route::get('/pdf', [PDFController::class, 'generatePDF']);
