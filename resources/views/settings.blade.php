@@ -8,7 +8,8 @@
     @vite('resources/css/app.css')
     <title>Spendly</title>
 </head>
-<body class="bg-[#EEEEEE] h-screen">
+<body class="h-screen text-[#222831] bg-[#e8a29b]">
+
 
     {{-- container --}}
     <div class="flex h-full">
@@ -21,7 +22,7 @@
             <div class="flex flex-col bg-neutral-50 h-full md:rounded-3xl px-6 md:px-10 py-8 overflow-y-auto lg:overflow-hidden no-scrollbar">
                 <div class="flex items-center justify-between " id="heading">
                     <div class="bg-neutral-50 fixed md:static w-full pt-10 md:pt-0 z-0">
-                        <h1 class="text-2xl md:text-3xl font-semibold py-5 md:py-0">{{ $page }}</h1>
+                        <h1 class="text-2xl md:text-3xl font-extrabold py-5 md:py-0">{{ $page }}</h1>
                     </div>
                 </div>
 

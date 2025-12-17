@@ -8,7 +8,7 @@
     @vite('resources/css/app.css')
     <title>hihi</title>
 </head>
-<body class="bg-[#EEEEEE] h-screen text-[#222831]">
+<body class="h-screen text-[#222831] bg-[#e8a29b]">
 
     {{-- container --}}
     <div class="flex h-full">
@@ -22,7 +22,7 @@
                 {{-- headings --}}
                 <div class="flex items-center justify-between " id="heading">
                     <div class="bg-neutral-50 fixed md:static w-full pt-10 md:pt-0 z-0">
-                        <h1 class="text-2xl md:text-3xl font-semibold py-5 md:py-0">{{ $page }}</h1>
+                        <h1 class="text-2xl md:text-3xl font-extrabold py-5 md:py-0">{{ $page }}</h1>
                     </div>
                     <div class="hidden md:block">
                         <x-profile-picture.profile-picture>
@@ -43,28 +43,29 @@
                 {{-- content --}}
                 <div class="mt-20 lg:mt-10 min-h-[150vh] lg:min-h-0 h-full flex flex-col lg:flex-row gap-6 overflow-hidden">
                     {{-- last transactions --}}
-                    <div class="flex flex-col w-full lg:w-1/2 min-h-1/2 lg:min-h-0 h-full border-solid border-2 border-[#EEEEEE] rounded-2xl overflow-hidden">
+                    <div class="flex flex-col w-full lg:w-[40%] min-h-1/2 lg:min-h-0 h-full border-solid border-2 border-[#EEEEEE] rounded-2xl overflow-hidden">
                         {{-- card --}}
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
-                            <x-cards.expense-card
-                                class="p-6 bg-gradient-to-br from-amber-400 to-amber-500"
-                                h1Class="text-2xl lg:text-3xl"
-                                spanClass="text-sm lg:text-base"
-                                title="Bạn đã chi"
-                                subtitle="Tháng này"
-                                :total="$spentThisMonth"
-                                date="{{ date('M Y') }}"
-                            />
+                        <x-cards.expense-card
+                            class="p-6 bg-gradient-to-br from-amber-400 to-amber-500"
+                            h1Class="text-2xl lg:text-3xl"
+                            spanClass="text-sm lg:text-base"
+                            title="Bạn đã chi"
+                            subtitle="Tháng này"
+                            :total="$spentThisMonth"
+                            date="{{ date('M Y') }}"
+                        />
 
-                            <x-cards.expense-card
-                                class="p-6 bg-gradient-to-br from-orange-400 to-orange-500"
-                                h1Class="text-2xl lg:text-3xl"
-                                spanClass="text-sm lg:text-base"
-                                title="Bạn đã thu"
-                                subtitle="Tháng này"
-                                :total="$incomeThisMonth"
-                                date="{{ date('M Y') }}"
-                            />
+                        <x-cards.expense-card
+                            class="p-6 bg-gradient-to-br from-orange-400 to-orange-500"
+                            h1Class="text-2xl lg:text-3xl"
+                            spanClass="text-sm lg:text-base"
+                            title="Bạn đã thu"
+                            subtitle="Tháng này"
+                            :total="$incomeThisMonth"
+                            date="{{ date('M Y') }}"
+                        />
+
                         </div>
 
 
@@ -76,28 +77,26 @@
                                 <span class="mt-10 text-md font-semibold text-center text-gray-500">No transactions yet</span>
                             @else
                                 @foreach ($transactions as $transaction)
-                                    <a href="expense/{{ $transaction['id'] }}">
-                                        <x-cards.transaction-card :isIncome="($transaction['type'] ?? 'expense') === 'income'">
+                                    @php
+                                        $isIncome = ($transaction->type ?? 'expense') === 'income';
+                                        // Chi: lấy icon danh mục. Thu: không có danh mục thì để null (sẽ dùng icon fallback)
+                                        $iconPath = $isIncome ? null : ($transaction->category->icon_path ?? null);
+                                    @endphp
 
-                                            <x-slot:expense>
-                                                {{ $transaction['expense'] }}
-                                            </x-slot:expense>
-                                            
-                                            <x-slot:total>
-                                                {{ number_format($transaction['total'], 0, ',', '.') }}
-                                            </x-slot:total>
-                                            
-                                            <x-slot:date>
-                                                {{ date('d M Y', strtotime($transaction['date'])) }}
-                                            </x-slot:date>
+                                    <a href="expense/{{ $transaction['id'] }}">
+                                        <x-cards.transaction-card :isIncome="$isIncome" :iconPath="$iconPath">
+                                            <x-slot:expense>{{ $transaction['expense'] }}</x-slot:expense>
+                                            <x-slot:total>{{ number_format($transaction['total'], 0, ',', '.') }}</x-slot:total>
+                                            <x-slot:date>{{ date('d M Y', strtotime($transaction['date'])) }}</x-slot:date>
                                         </x-cards.transaction-card>
                                     </a>
                                 @endforeach
+
                             @endif
                         </div>
                     </div>
                     
-                    <div class="w-full lg:w-1/2 min-h-1/2 lg:min-h-0 h-full flex flex-col gap-6">
+                    <div class="w-full lg:w-[60%] min-h-1/2 lg:min-h-0 h-full flex flex-col gap-6">
                         {{-- monthly spend --}}
                         <div class="p-6 {{ count($transactions) == 0 ? 'h-1/3' : 'h-max' }} border-solid border-2 border-[#EEEEEE] rounded-2xl">
                             <span class="font-bold text-lg">Các chi phí của bạn</span>

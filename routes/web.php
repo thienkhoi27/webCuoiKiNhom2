@@ -153,6 +153,7 @@ Route::get('expense/{id}', function ($id) {
     return view('expense', $data);
 });
 
+
 Route::post('/edit-expense/{id}', [editExpenseController::class, 'editExpense'])->name('transactions.editExpense');
 
 Route::get('delete-expense/{id}', function ($id) {

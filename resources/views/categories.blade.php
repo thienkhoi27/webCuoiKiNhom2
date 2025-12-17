@@ -6,14 +6,15 @@
   @vite('resources/css/app.css')
   <title>Spendly</title>
 </head>
-<body class="bg-[#EEEEEE] h-screen text-[#222831]">
+<body class="h-screen text-[#222831] bg-[#e8a29b]">
+
 <div class="flex h-full">
   <x-sidebar.nav/>
 
   <div class="h-full w-full md:pr-6 md:py-10 overflow-hidden">
     <div class="flex flex-col bg-neutral-50 h-full md:rounded-3xl px-6 md:px-10 py-8 overflow-y-auto no-scrollbar">
       <div class="bg-neutral-50 fixed md:static w-full pt-10 md:pt-0">
-        <h1 class="text-2xl md:text-3xl font-semibold py-5 md:py-0">{{ $page }}</h1>
+        <h1 class="text-2xl md:text-3xl font-extrabold py-5 md:py-0">{{ $page }}</h1>
       </div>
 
       @if(session('success'))
