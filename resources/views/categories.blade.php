@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
-  <title>Spendly</title>
+  <title>Danh mục</title>
 </head>
 <body class="h-screen text-[#222831] bg-[#e8a29b]">
 

@@ -13,7 +13,7 @@
             {{-- logo --}}
             <a href="/" class="flex gap-4 items-center justify-center">
                 <img src="{{ asset('images/logo/logo.svg') }}" alt="" class="cursor-pointer">
-                <h1 class="text-3xl font-bold text-[#222831] hidden md:md:group-hover:block">Hihi</h1>
+                <h1 class="text-3xl font-bold text-[#222831] hidden md:md:group-hover:block">Nhóm 2</h1>
             </a>
         
             {{-- nav --}}
