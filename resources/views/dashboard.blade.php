@@ -130,7 +130,18 @@
 
                                             <div class="flex-1">
                                                 <div class="font-bold">{{ $c->name }}</div>
-                                                <div class="text-xs font-semibold opacity-90">{{ $c->status }}</div>
+                                                    @php
+                                                        $badgeClass = match($c->status) {
+                                                            'An toàn' => 'bg-emerald-500/20 text-emerald-100 ring-1 ring-emerald-200/30',
+                                                            'Cảnh báo' => 'bg-amber-500/20 text-amber-100 ring-1 ring-amber-200/30',
+                                                            'Vượt hạn mức' => 'bg-rose-500/20 text-rose-100 ring-1 ring-rose-200/30',
+                                                            default => 'bg-white/10 text-white/80 ring-1 ring-white/15',
+                                                        };
+                                                    @endphp
+                                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold {{ $badgeClass }}">
+                                                        {{ $c->status }}
+                                                    </span>
+
                                             </div>
                                         </div>
 
