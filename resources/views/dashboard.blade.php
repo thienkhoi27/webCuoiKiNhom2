@@ -45,17 +45,27 @@
                     {{-- last transactions --}}
                     <div class="flex flex-col w-full lg:w-1/2 min-h-1/2 lg:min-h-0 h-full border-solid border-2 border-[#EEEEEE] rounded-2xl overflow-hidden">
                         {{-- card --}}
-                        @php
-                             $total = 0 
-                        @endphp
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+                            <x-cards.expense-card
+                                class="p-6 bg-gradient-to-br from-amber-400 to-amber-500 shadow-lg shadow-black/10"
+                                h1Class="text-2xl lg:text-3xl"
+                                spanClass="text-sm lg:text-base opacity-90"
+                                spanText="Bạn đã chi"
+                                date="Tháng này"
+                                :total="$spentThisMonth"
+                            />
 
-                        @foreach ($transactions as $transaction)
-                            @if (date('M', strtotime($transaction['date'])) == date('M'))
-                                <?php $total += $transaction['total'] ?>
-                            @endif
-                        @endforeach
+                            <x-cards.expense-card
+                                class="p-6 bg-gradient-to-br from-orange-400 to-orange-500 shadow-lg shadow-black/10"
+                                h1Class="text-2xl lg:text-3xl"
+                                spanClass="text-sm lg:text-base opacity-90"
+                                spanText="Bạn đã thu"
+                                date="Tháng này"
+                                :total="$incomeThisMonth"
+                            />
+                        </div>
 
-                        <x-cards.expense-card class="p-6" h1Class="text-2xl lg:text-3xl" spanClass="text-sm lg:text-base" date="{{ date('M Y') }}" total="{{ $total }}"/>
+
                         
                         {{-- transactions --}}
                         <h2 class="mt-4 px-6 text-lg font-bold">Chi phí gần nhất</h2>
@@ -65,7 +75,8 @@
                             @else
                                 @foreach ($transactions as $transaction)
                                     <a href="expense/{{ $transaction['id'] }}">
-                                        <x-cards.transaction-card>
+                                        <x-cards.transaction-card :isIncome="($transaction['type'] ?? 'expense') === 'income'">
+
                                             <x-slot:expense>
                                                 {{ $transaction['expense'] }}
                                             </x-slot:expense>
@@ -163,35 +174,42 @@
     @vite('resources/js/alert.js')
 
     @if (count($transactions) > 0)
-        <script>
-            window.onload = function () {
-    
-            var chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-                backgroundColor: "transparent",
-                zoomEnabled: true,
-                axisX:{      
-                    valueFormatString: "D MMM",
-                    labelAngle: -45,
-                    interval: 2628000,
-                },
-                axisY: {
-                    valueFormatString: "#,###"
-                },
-                data: [{
+    <script>
+    window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            backgroundColor: "transparent",
+            axisX: {
+                valueFormatString: "D MMM",
+                interval: 3,
+                intervalType: "day",
+                labelAngle: -45
+            },
+            axisY: { valueFormatString: "#,###" },
+            legend: { verticalAlign: "top", horizontalAlign: "right" },
+            data: [
+                {
                     type: "spline",
-                    markerSize: 5,
-                    xValueFormatString: "MMMM",
-                    yValueFormatString: "#,###",
+                    name: "Chi",
+                    showInLegend: true,
+                    markerSize: 0,
                     xValueType: "dateTime",
-                    dataPoints: <?php echo json_encode($dataPoints ?? [], JSON_NUMERIC_CHECK); ?>
-                }]
-            });
-            
-            chart.render();
-            
-            };
-        </script>
+                    dataPoints: @json($expensePoints, JSON_NUMERIC_CHECK)
+                },
+                {
+                    type: "spline",
+                    name: "Thu",
+                    showInLegend: true,
+                    markerSize: 0,
+                    xValueType: "dateTime",
+                    dataPoints: @json($incomePoints, JSON_NUMERIC_CHECK)
+                }
+            ]
+        });
+        chart.render();
+    };
+    </script>
     @endif
+
 </body>
 </html>

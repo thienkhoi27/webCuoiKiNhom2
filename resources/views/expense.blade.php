@@ -72,9 +72,21 @@
                                 {{ $transactions['date'] }}
                             </x-slot:value>
                         </x-forms.form>
-                        <option value="{{ $c->id }}" {{ (int)$transactions['category_id'] === (int)$c->id ? 'selected' : '' }}>
-                        {{ $c->name }}
-                        </option>
+                        
+                        @if(($transactions['type'] ?? 'expense') === 'expense')
+                            <div class="mt-2">
+                                <label class="text-md font-semibold block">Danh mục</label>
+                                <select name="category_id" class="mt-2 p-3 rounded-lg bg-[#EEEEEE] w-full text-sm">
+                                    <option value="">-- Chọn danh mục --</option>
+                                    @foreach($categories as $c)
+                                        <option value="{{ $c->id }}" {{ (int)($transactions['category_id'] ?? 0) === (int)$c->id ? 'selected' : '' }}>
+                                            {{ $c->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
+
 
                         <div class="flex justify-between gap-4 items-center">
                             <a href="/delete-expense/{{ $transactions['id'] }}" class="mt-6 bg-red-600 text-white rounded-3xl px-4 py-2 font-semibold w-full text-center text-sm lg:text-base">Delete</a>

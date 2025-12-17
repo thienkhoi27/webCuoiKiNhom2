@@ -35,14 +35,52 @@ Route::get('/', function () {
 
     $user = session('username');
 
-    $transactions = Transaction::where('user', $user)->orderBy('date', 'asc')->get();
+    // Nên orderBy desc để "gần nhất" đúng nghĩa (tuỳ bạn)
+    $transactions = Transaction::where('user', $user)
+        ->orderBy('date', 'desc')
+        ->get();
 
-    $monthStart = now()->startOfMonth()->toDateString();
-    $monthEnd   = now()->endOfMonth()->toDateString();
-    $monthKey   = now()->startOfMonth()->toDateString(); // YYYY-mm-01
+    $monthStart = date('Y-m-01');
+    $monthEnd   = date('Y-m-t');
+
+    $spentThisMonth = Transaction::where('user', $user)
+        ->where('type', 'expense')
+        ->whereBetween('date', [$monthStart, $monthEnd])
+        ->sum('total');
+
+    $incomeThisMonth = Transaction::where('user', $user)
+        ->where('type', 'income')
+        ->whereBetween('date', [$monthStart, $monthEnd])
+        ->sum('total');
+
+    // Data chart theo ngày trong tháng
+    $dailyExpense = Transaction::where('user', $user)->where('type', 'expense')
+        ->whereBetween('date', [$monthStart, $monthEnd])
+        ->selectRaw('date, SUM(total) as total')
+        ->groupBy('date')->orderBy('date')->get()->keyBy('date');
+
+    $dailyIncome = Transaction::where('user', $user)->where('type', 'income')
+        ->whereBetween('date', [$monthStart, $monthEnd])
+        ->selectRaw('date, SUM(total) as total')
+        ->groupBy('date')->orderBy('date')->get()->keyBy('date');
+
+    $expensePoints = [];
+    $incomePoints  = [];
+
+    for ($d = 1; $d <= (int)date('t'); $d++) {
+        $date = date('Y-m-') . str_pad((string)$d, 2, '0', STR_PAD_LEFT);
+        $x = strtotime($date) * 1000;
+
+        $expensePoints[] = ["x" => $x, "y" => (int)($dailyExpense[$date]->total ?? 0)];
+        $incomePoints[]  = ["x" => $x, "y" => (int)($dailyIncome[$date]->total ?? 0)];
+    }
+
+    $monthKey = now()->startOfMonth()->toDateString(); // YYYY-mm-01
 
     $categories = Category::where('user', $user)->get()->map(function ($c) use ($user, $monthStart, $monthEnd, $monthKey) {
+        // Chỉ tính CHI theo danh mục
         $spent = Transaction::where('user', $user)
+            ->where('type', 'expense')
             ->where('category_id', $c->id)
             ->whereBetween('date', [$monthStart, $monthEnd])
             ->sum('total');
@@ -51,10 +89,9 @@ Route::get('/', function () {
             ->where('month', $monthKey)
             ->value('amount') ?? 0;
 
-        $spent = (int)$spent;
+        $spent  = (int)$spent;
         $budget = (int)$budget;
 
-        // trạng thái
         if ($budget <= 0) {
             $status = 'Chưa đặt';
             $variant = 'blue';
@@ -66,9 +103,9 @@ Route::get('/', function () {
             else { $status = 'Vượt hạn mức'; $variant = 'red'; }
         }
 
-        $c->spent = $spent;
-        $c->budget = $budget;
-        $c->status = $status;
+        $c->spent   = $spent;
+        $c->budget  = $budget;
+        $c->status  = $status;
         $c->variant = $variant;
         $c->percent = min(100, max(0, $percent));
 
@@ -79,28 +116,42 @@ Route::get('/', function () {
         'page' => 'Bảng điều khiển',
         'transactions' => $transactions,
         'categories' => $categories,
+
+        // THÊM 4 BIẾN NÀY
+        'spentThisMonth' => (int)$spentThisMonth,
+        'incomeThisMonth' => (int)$incomeThisMonth,
+        'expensePoints' => $expensePoints,
+        'incomePoints' => $incomePoints,
     ]);
 })->name('dashboard');
+
 
 Route::get('/add-expense', function () {
     if (session('username') == null) return redirect('/login');
 
-    return view('add-expense', [
-        'page' => 'Thêm chi phí',
-        'categories' => Category::where('user', session('username'))->get(),
-    ]);
+    $user = session('username');
+
+    $data = [
+        'page' => 'Thêm chi/thu',
+        'categories' => Category::where('user', $user)->orderBy('name')->get(),
+    ];
+
+    return view('add-expense', $data);
 });
 
 Route::get('expense/{id}', function ($id) {
     if (session('username') == null) return redirect('/login');
 
-    return view('expense', [
+    $user = session('username');
+
+    $data = [
         'page' => 'Chỉnh sửa chi phí',
         'transactions' => Transaction::findOrFail($id),
-        'categories' => Category::where('user', session('username'))->get(),
-    ]);
-});
+        'categories' => Category::where('user', $user)->orderBy('name')->get(),
+    ];
 
+    return view('expense', $data);
+});
 
 Route::post('/edit-expense/{id}', [editExpenseController::class, 'editExpense'])->name('transactions.editExpense');
 

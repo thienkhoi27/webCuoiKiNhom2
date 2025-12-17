@@ -30,6 +30,23 @@
                 <div class="mt-20 md:mt-6 mx-auto w-full md:w-2/3 lg:w-1/3">
                     <form action="/transactions" method="POST" class="flex flex-col gap-4">
                         @csrf
+                        <div>
+                            <label class="font-semibold block">Loại</label>
+                            <select name="type" id="type" class="mt-2 p-3 rounded-lg bg-[#EEEEEE] w-full text-sm">
+                                <option value="expense" selected>Chi</option>
+                                <option value="income">Thu</option>
+                            </select>
+                        </div>
+
+                        <div class="mt-4" id="categoryWrap">
+                            <label class="text-md font-semibold block">Danh mục</label>
+                            <select name="category_id" id="category_id" class="mt-2 p-3 rounded-lg bg-[#EEEEEE] w-full text-sm">
+                                <option value="">-- Chọn danh mục --</option>
+                                @foreach($categories as $c)
+                                    <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         
                         <x-forms.form type="text">
                             <x-slot:label>
@@ -57,16 +74,6 @@
                                 date
                             </x-slot:id>
                         </x-forms.form>
-                        <div>
-                        <label class="text-sm font-semibold block">Danh mục</label>
-                        <select name="category_id"
-                                class="mt-2 p-3 rounded-xl bg-[#EEEEEE] w-full text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-blueSoft/40">
-                            <option value="">-- Chọn danh mục --</option>
-                            @foreach($categories as $c)
-                            <option value="{{ $c->id }}">{{ $c->name }}</option>
-                            @endforeach
-                        </select>
-                        </div>
 
                         <button type="submit" class="mt-6 bg-[#222831] text-white rounded-3xl px-4 py-2 font-semibold">Thêm chi phí</button>
                     </form>
@@ -78,5 +85,37 @@
     </div>
 
     @vite('resources/js/app.js')
+    <script>
+    const typeEl = document.getElementById('type');
+    const wrap = document.getElementById('categoryWrap');
+    const cat = document.getElementById('category_id');
+
+    function sync() {
+        const isIncome = typeEl.value === 'income';
+        wrap.classList.toggle('hidden', isIncome);
+        if (isIncome) cat.value = '';
+    }
+    typeEl.addEventListener('change', sync);
+    sync();
+    function toggleCategory() {
+        const type = document.getElementById('type')?.value;
+        const wrap = document.getElementById('categoryWrap');
+        const sel  = document.getElementById('category_id');
+
+        if (!wrap || !sel) return;
+
+        if (type === 'income') {
+            wrap.classList.add('hidden');
+            sel.value = '';
+        } else {
+            wrap.classList.remove('hidden');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('type')?.addEventListener('change', toggleCategory);
+        toggleCategory();
+    });
+    </script>
 </body>
 </html>

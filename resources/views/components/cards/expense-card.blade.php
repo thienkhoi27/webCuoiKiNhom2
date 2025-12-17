@@ -1,5 +1,5 @@
 <div>
-    <div {{ $attributes->class(['bg-pinkSoft text-[#EEEEEE] rounded-2xl']) }}>
+    <div {{ $attributes->class(['text-white rounded-2xl']) }}>
         <span class="{{ $spanClass }}">Bạn đã chi</span>
         <h1 class="mt-2 lg:mt-4 {{ $h1Class }} font-bold">{{ number_format($total, 0, ',', '.') }}</h1>
 

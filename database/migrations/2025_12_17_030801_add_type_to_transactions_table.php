@@ -8,18 +8,18 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('transactions', function (Blueprint $table) {
-            $table->foreignId('category_id')
-                ->nullable()
-                ->after('expense')
-                ->constrained('categories')
-                ->nullOnDelete();
+            if (!Schema::hasColumn('transactions', 'type')) {
+                $table->string('type')->default('expense')->after('user'); // expense | income
+            }
         });
     }
 
     public function down(): void
     {
         Schema::table('transactions', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('category_id');
+            if (Schema::hasColumn('transactions', 'type')) {
+                $table->dropColumn('type');
+            }
         });
     }
 };

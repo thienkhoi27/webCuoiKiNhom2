@@ -9,29 +9,32 @@ class editExpenseController extends Controller
 {
     public function editExpense($id, Request $request)
     {
-        if (!session('username')) {
-            return redirect('/login');
+        $type = $request->input('type', 'expense');
+
+        if ($type === 'expense') {
+            $request->validate([
+                'expense' => 'required|string|max:255',
+                'total' => 'required|integer|min:1',
+                'date' => 'required|date',
+                'category_id' => 'required|integer',
+            ]);
+        } else {
+            $request->validate([
+                'expense' => 'required|string|max:255',
+                'total' => 'required|integer|min:1',
+                'date' => 'required|date',
+            ]);
         }
 
-        $transaction = Transaction::where('id', $id)
-            ->where('user', session('username'))
-            ->firstOrFail();
-
-        $data = $request->validate([
-            'expense' => ['required','string','max:255'],
-            'total' => ['required','integer','min:0'],
-            'date' => ['required','date'],
-            'category_id' => ['nullable','integer'],
+        Transaction::find($id)->update([
+            'type' => $type,
+            'expense' => $request->input('expense'),
+            'total' => $request->input('total'),
+            'date' => $request->input('date'),
+            'category_id' => ($type === 'expense') ? $request->input('category_id') : null,
         ]);
 
-        Transaction::findOrFail($id)->update([
-            'expense' => $data['expense'],
-            'category_id' => $data['category_id'] ?? null,
-            'total' => (int)$data['total'],
-            'date' => $data['date'],
-        ]);
-
-
-        return redirect('/')->with('success', 'Expense updated successfully!');
+        return redirect('/')->with('success', 'Transaction updated successfully!');
     }
+
 }
