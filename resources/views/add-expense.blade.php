@@ -29,6 +29,17 @@
 
                 {{-- content --}}
                 <div class="mt-20 md:mt-6 mx-auto w-full md:w-2/3 lg:w-1/3">
+                    @if ($errors->any())
+                        <div class="mb-4 rounded-2xl border border-red-200 bg-red-50 p-4 text-red-700">
+                            <div class="font-bold mb-2">Dữ liệu không hợp lệ:</div>
+                            <ul class="list-disc pl-5 space-y-1">
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-sm font-semibold">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form action="/transactions" method="POST" class="flex flex-col gap-4">
                         @csrf
                         <div>

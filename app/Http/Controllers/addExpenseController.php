@@ -2,40 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTransactionRequest;
 use App\Models\Transaction;
-use Illuminate\Http\Request;
 
 class addExpenseController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreTransactionRequest $request)
     {
-        $type = $request->input('type', 'expense');
+        $data = $request->validated();
 
-        if ($type === 'expense') {
-            $request->validate([
-                'expense' => 'required|string|max:255',
-                'total' => 'required|integer|min:1',
-                'date' => 'required|date',
-                'category_id' => 'required|integer',
-            ]);
-        } else {
-            $request->validate([
-                'expense' => 'required|string|max:255',
-                'total' => 'required|integer|min:1',
-                'date' => 'required|date',
-            ]);
+        if ($data['type'] === 'income') {
+            $data['category_id'] = null;
         }
 
         Transaction::create([
             'user' => session('username'),
-            'type' => $type,
-            'expense' => $request->expense, // mô tả
-            'total' => $request->total,
-            'date' => $request->date,
-            'category_id' => ($type === 'expense') ? $request->category_id : null,
+            'type' => $data['type'],
+            'expense' => $data['expense'],
+            'total' => (int)$data['total'],
+            'date' => $data['date'],
+            'category_id' => $data['category_id'] ?? null,
         ]);
 
-        return redirect('/')->with('success', $type === 'income' ? 'Income added successfully!' : 'Expense added successfully!');
+        return redirect('/')->with(
+            'success',
+            $data['type'] === 'income' ? 'Thu nhập added successfully!' : 'Chi phí added successfully!'
+        );
     }
-
 }
