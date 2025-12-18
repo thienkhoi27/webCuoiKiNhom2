@@ -44,11 +44,10 @@ Dữ liệu đã được nạp sẵn (Seed) đầy đủ danh mục, hạn mứ
 
 ### 🖥️ Bảng điều khiển (Dashboard)
 <div align="center">
-  <img src="./screenshots/dashboard.png" alt="Giao diện Dashboard" width="100%">
+  <img src="screenshots/dashboard.png" alt="Dashboard Screenshot" width="100%">
   <br>
   <em>Giao diện tổng quan với biểu đồ và danh sách giao dịch gần nhất</em>
 </div>
-
 ---
 
 ## ✨ Tính năng chính
