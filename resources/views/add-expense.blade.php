@@ -71,7 +71,7 @@
 
                         <x-forms.form type="number">
                             <x-slot:label>
-                                Chi
+                                Giá trị
                             </x-slot:label>
                             <x-slot:id>
                                 total
@@ -87,7 +87,7 @@
                             </x-slot:id>
                         </x-forms.form>
 
-                        <button type="submit" class="mt-6 bg-[#222831] text-white rounded-3xl px-4 py-2 font-semibold">Thêm chi phí</button>
+                        <button type="submit" class="mt-6 bg-[#222831] text-white rounded-3xl px-4 py-2 font-semibold">Thêm thu/chi</button>
                     </form>
                 </div>
             </div>

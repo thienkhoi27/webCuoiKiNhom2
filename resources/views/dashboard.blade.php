@@ -74,7 +74,7 @@
                         <h2 class="mt-4 px-6 text-lg font-bold">Thu/Chi gần nhất</h2>
                         <div class="mt-4 flex flex-col gap-4 px-6 pb-6 overflow-y-auto">
                             @if (count($transactions) == 0)
-                                <span class="mt-10 text-md font-semibold text-center text-gray-500">No transactions yet</span>
+                                <span class="mt-10 text-md font-semibold text-center text-gray-500">Chưa có giao dịch nào</span>
                             @else
                                 @foreach ($transactions as $transaction)
                                     @php
@@ -172,7 +172,7 @@
 
                             <div class="mt-4 flex-1 overflow-hidden">
                                 @if (count($transactions) == 0)
-                                    <span class="mt-10 text-md font-semibold text-center text-gray-500 w-full block">No transactions yet</span>
+                                    <span class="mt-10 text-md font-semibold text-center text-gray-500 w-full block">Chưa có giao dịch nào</span>
                                 @else
                                     <div id="chartContainer" class="w-full h-full"></div>
                                 @endif

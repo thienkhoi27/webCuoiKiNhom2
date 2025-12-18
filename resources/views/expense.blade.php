@@ -90,8 +90,8 @@
 
 
                         <div class="flex justify-between gap-4 items-center">
-                            <a href="/delete-expense/{{ $transactions['id'] }}" class="mt-6 bg-red-600 text-white rounded-3xl px-4 py-2 font-semibold w-full text-center text-sm lg:text-base">Delete</a>
-                            <button type="submit" class="mt-6 bg-[#222831] text-white rounded-3xl px-4 py-2 font-semibold w-full text-sm lg:text-base">Edit Expense</button>
+                            <a href="/delete-expense/{{ $transactions['id'] }}" class="mt-6 bg-red-600 text-white rounded-3xl px-4 py-2 font-semibold w-full text-center text-sm lg:text-base">Xóa</a>
+                            <button type="submit" class="mt-6 bg-[#222831] text-white rounded-3xl px-4 py-2 font-semibold w-full text-sm lg:text-base">Chỉnh sửa</button>
                         </div>
                     </form>
                 </div>
