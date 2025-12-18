@@ -196,13 +196,14 @@ resources/
 
 ## 👥 Nhóm phát triển
 
-| STT | Thành viên | Vai trò | Github |
-| :--: | :--- | :--- | :--- |
-| 1 | **Nguyễn Thu Hương** | Team Leader / UI-UX | [@thuhun166](https://github.com/thuhun166) |
-| 2 | **Lê Thiện Khôi** | Frontend / Backend | [@thienkhoi27](https://github.com/thienkhoi27) |
-| 3 | **Nguyễn Tuấn Kiệt** | Database / Tester | [@kitcoding17032005](https://github.com/kitcoding17032005) |
-| 4 | **Dương Phú Nhật** | Database / Tester | [@PhuNhat](https://github.com/PhuNhat) |
-| 5 | **Hoàng Thị Kiều Diễm** | Database / Tester | [@KieuDiem279](https://github.com/KieuDiem279) |
+| STT | Thành viên | Vai trò | Github | % đóng góp |
+| :--: | :--- | :--- | :--- | :--: |
+| 1 | **Nguyễn Thu Hương** | Team Leader / UI-UX | [@thuhun166](https://github.com/thuhun166) | 20% |
+| 2 | **Lê Thiện Khôi** | Frontend / Backend | [@thienkhoi27](https://github.com/thienkhoi27) | 20% |
+| 3 | **Nguyễn Tuấn Kiệt** | Database / Tester | [@kitcoding17032005](https://github.com/kitcoding17032005) | 20% |
+| 4 | **Dương Phú Nhật** | Database / Tester | [@PhuNhat](https://github.com/PhuNhat) | 20% |
+| 5 | **Hoàng Thị Kiều Diễm** | Database / Tester | [@KieuDiem279](https://github.com/KieuDiem279) | 20% |
+
 
 ---
 
