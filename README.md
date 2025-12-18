@@ -164,15 +164,15 @@ php artisan serve
 php artisan storage:link
 ```
 
-**Quy tắc đặt tên file trong `storage/app/public/`:**
-* `category-food.png` (Ăn/Uống)
-* `category-transport.png` (Di chuyển)
-* `category-travel.png` (Du lịch)
-* `category-shopping.png` (Mua sắm)
-* `category-education.png` (Giáo dục)
-* `category-health.png` (Sức khỏe)
-* `category-entertainment.png` (Giải trí)
-* `admin-avatar.png` (Ảnh đại diện Admin)
+**Quy tắc đặt tên file trong `storage/app/public/categories`:**
+* `food.png` (Ăn/Uống)
+* `transport.png` (Di chuyển)
+* `travel.png` (Du lịch)
+* `shopping.png` (Mua sắm)
+* `education.png` (Giáo dục)
+* `health.png` (Sức khỏe)
+* `entertainment.png` (Giải trí)
+* `avatar.png` (Ảnh đại diện Admin)
 
 ---
 
