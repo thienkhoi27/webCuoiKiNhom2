@@ -2,7 +2,7 @@
 
   <img src="https://cdn-icons-png.flaticon.com/512/2953/2953363.png" alt="Spendly Logo" width="120" height="120">
 
-  # 💸 Spendly - Quản Lý Tài Chính Cá Nhân
+  # 💸 Nhóm 2 - Ứng Dụng Quản Lý Tài Chính Cá Nhân
 
   **Giải pháp quản lý thu chi trực quan, thông minh và hiệu quả.**
 
@@ -17,7 +17,7 @@
 
 ## 📖 Giới thiệu
 
-**Spendly** là ứng dụng web giúp người dùng quản lý tài chính cá nhân theo hướng trực quan và dễ dùng. Hệ thống cho phép ghi lại thu/chi hàng ngày, phân loại theo danh mục, theo dõi hạn mức ngân sách, xem biểu đồ thống kê và xuất báo cáo PDF chi tiết.
+Ứng dụng web giúp người dùng quản lý tài chính cá nhân theo hướng trực quan và dễ dùng. Hệ thống cho phép ghi lại thu/chi hàng ngày, phân loại theo danh mục, theo dõi hạn mức ngân sách, xem biểu đồ thống kê và xuất báo cáo PDF chi tiết.
 
 ### 🌟 Điểm nổi bật
 * **Trực quan:** Biểu đồ CanvasJS hiển thị rõ ràng xu hướng tài chính.
