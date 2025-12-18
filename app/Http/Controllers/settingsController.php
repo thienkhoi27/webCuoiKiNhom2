@@ -25,7 +25,7 @@ class settingsController extends Controller
 
             session()->put('username', $changeUsername);
 
-            return back()->with('success', 'Username changed successfully!');
+            return back()->with('success', 'Đã đổi tên người dùng!');
         }
 
         if ($request->hasFile('changeProfilePicture')) {
@@ -48,7 +48,7 @@ class settingsController extends Controller
 
             session()->put('profilePicture', $changeProfilePicture);
 
-            return back()->with('success', 'Profile picture changed successfully!');
+            return back()->with('success', 'Đã đổi ảnh đại diện!');
         }
 
         if ($currentPassword && $newPassword) {
@@ -57,7 +57,7 @@ class settingsController extends Controller
             if (Hash::check($currentPassword, $password->password)) {
                 User::where('username', session('username'))->update(['password' => Hash::make($newPassword)]);
 
-                return back()->with('success', 'Password changed successfully!');
+                return back()->with('success', 'Đã đổi mật khẩu thành công!');
             }
         }
     }

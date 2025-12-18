@@ -24,7 +24,7 @@ class loginController extends Controller
             session()->put('username', $user->username);
             session()->put('profilePicture', $user->profilePicture);
 
-            return redirect('/')->with('success', 'Logged in successfully!');
+            return redirect('/')->with('success', 'Đã đăng nhập thành công!');
         } else {
             return back()->with('error', 'Invalid username or password');
         }

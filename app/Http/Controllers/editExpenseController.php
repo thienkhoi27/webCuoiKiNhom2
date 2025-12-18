@@ -34,7 +34,7 @@ class editExpenseController extends Controller
             'category_id' => ($type === 'expense') ? $request->input('category_id') : null,
         ]);
 
-        return redirect('/')->with('success', 'Transaction updated successfully!');
+        return redirect('/')->with('success', 'Đã cập nhật thu/chi!');
     }
 
 }

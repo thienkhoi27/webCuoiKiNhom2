@@ -30,6 +30,6 @@ class addUserController extends Controller
             'profilePicture' => 'images/profile-picture/default.svg',
         ]);
 
-        return redirect('/login')->with('success', 'User created successfully!');
+        return redirect('/login')->with('success', 'Đã tạo tài khoản thành công!');
     }
 }

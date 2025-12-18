@@ -26,7 +26,7 @@ class addExpenseController extends Controller
 
         return redirect('/')->with(
             'success',
-            $data['type'] === 'income' ? 'Thu nhập added successfully!' : 'Chi phí added successfully!'
+            $data['type'] === 'income' ? 'Thu nhập đã được thêm!' : 'Chi phí đã được thêm!'
         );
     }
 }
