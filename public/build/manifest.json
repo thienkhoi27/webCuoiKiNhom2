@@ -1,0 +1,47 @@
+{
+  "_axios-B4uVmeYG.js": {
+    "file": "assets/axios-B4uVmeYG.js",
+    "name": "axios"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-DulbfBo5.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/alert.js": {
+    "file": "assets/alert-D7GheeSI.js",
+    "name": "alert",
+    "src": "resources/js/alert.js",
+    "isEntry": true
+  },
+  "resources/js/analytics.js": {
+    "file": "assets/analytics-DiAXmJn0.js",
+    "name": "analytics",
+    "src": "resources/js/analytics.js",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-BlSmUzvT.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_axios-B4uVmeYG.js"
+    ]
+  },
+  "resources/js/bootstrap.js": {
+    "file": "assets/bootstrap-nOliJJ0A.js",
+    "name": "bootstrap",
+    "src": "resources/js/bootstrap.js",
+    "isEntry": true,
+    "imports": [
+      "_axios-B4uVmeYG.js"
+    ]
+  },
+  "resources/js/jquery-3.7.1.min.js": {
+    "file": "assets/jquery-3.7.1.min-B5ZEcMqV.js",
+    "name": "jquery-3.7.1.min",
+    "src": "resources/js/jquery-3.7.1.min.js",
+    "isEntry": true
+  }
+}
