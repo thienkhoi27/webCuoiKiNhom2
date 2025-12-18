@@ -208,7 +208,6 @@ resources/
 ---
 
 
-Dự án được phát hành dưới giấy phép [MIT](./LICENSE).
 
 <div align="center">
   <sub>Developed with ❤️ by Group 2</sub>
