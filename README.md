@@ -10,7 +10,6 @@
   [![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php)](https://www.php.net)
   [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com)
   [![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql)](https://www.mysql.com)
-  [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
 
 </div>
 
@@ -200,15 +199,14 @@ resources/
 
 | STT | Thành viên | Vai trò | Github |
 | :--: | :--- | :--- | :--- |
-| 1 | **Nguyễn Thu Hương** | Team Leader / Backend | [@thuhun166](https://github.com/thuhun166) |
-| 2 | **Lê Thiện Khôi** | Frontend / UI-UX | [@thienkhoi27](https://github.com/thienkhoi27) |
+| 1 | **Nguyễn Thu Hương** | Team Leader / UI-UX | [@thuhun166](https://github.com/thuhun166) |
+| 2 | **Lê Thiện Khôi** | Frontend / Backend | [@thienkhoi27](https://github.com/thienkhoi27) |
 | 3 | **Nguyễn Tuấn Kiệt** | Database / Tester | [@kitcoding17032005](https://github.com/kitcoding17032005) |
 | 4 | **Dương Phú Nhật** | Database / Tester | [@PhuNhat](https://github.com/PhuNhat) |
 | 5 | **Hoàng Thị Kiều Diễm** | Database / Tester | [@KieuDiem279](https://github.com/KieuDiem279) |
 
 ---
 
-## 📄 License
 
 Dự án được phát hành dưới giấy phép [MIT](./LICENSE).
 
