@@ -108,7 +108,7 @@ Hệ thống hỗ trợ tạo các danh mục (Ăn uống, Di chuyển, Mua sắ
 
 **Bước 1: Clone source code**
 ```bash
-git clone <URL-repo-cua-ban>
+git clone https://github.com/thienkhoi27/webCuoiKiNhom2.git
 cd webCuoiKiNhom2
 ```
 
